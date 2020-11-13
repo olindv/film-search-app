@@ -1,25 +1,24 @@
-import logo from './logo.svg';
+import React from 'react';
+import Header from './components/Header/Header.jsx';
+import Footer from './components/Footer/Footer.jsx';
+import FilmList from './components/FilmList/FilmList.jsx';
+import FilmInfo from './components/FilmInfo/FilmInfo.jsx';
+import InputSearch from './components/InputSearch/InputSearch.jsx';
 import './App.css';
+import { withRouter, Switch, Route } from "react-router-dom";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <Switch>
+        <Route path="/" component={InputSearch} exact/>
+        <Route path="/film-list" component={FilmList} />
+        <Route path="/film/:filmId" component={FilmInfo} />
+      </Switch>
+      <Footer />
     </div>
   );
 }
 
-export default App;
+export default withRouter(App);
